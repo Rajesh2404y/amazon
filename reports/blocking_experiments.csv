@@ -1,0 +1,5 @@
+method,num_s1,num_candidates,avg_candidates_per_s1,median_candidates_per_s1,max_candidates_per_s1,blocking_recall,candidate_reduction_ratio,runtime_sec,peak_ram_mb
+Baseline Multi-View (Exact+7-Pfx+Word0Addr),5000,87881,17.58,15.0,35,0.7628,0.999998,76.63,1362.3
+Enhanced Multi-View (Exact+DBA+TokenSwap+NumberAnywhereAddr),5000,129719,25.94,25.0,45,0.8203,0.999997,164.81,1906.1
+Option A Per-View Quotas (Top25 Name + Top15 Addr + Top10 Char Union),5000,200495,40.10,42.0,50,0.8567,0.999996,281.44,1893.3
+Option A Per-View Quotas (15K Scale-up),15000,590790,39.39,42.0,50,0.8597,0.999996,460.41,1859.0

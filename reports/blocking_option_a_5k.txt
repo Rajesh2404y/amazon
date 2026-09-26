@@ -1,0 +1,59 @@
+================================================================================
+BLOCKING EXPERIMENT COMPARISON: BASELINE VS. OPTION A (5,000 S1 ENTITIES)
+================================================================================
+
+1. ARCHITECTURAL COMPARISON
+--------------------------------------------------------------------------------
+Approach 1: Baseline (Post-Union Global Truncation)
+  - Method: Combined hits from all blocking views into a single list, then 
+    truncated with a hard cap (top 25-45).
+  - Flaw: High-frequency character 3-gram hits flooded the candidate pool, 
+    displacing high-precision exact name and address matches.
+
+Approach 2: Option A (Independent Per-View Quotas with Pure Mathematical Union)
+  - Name Quota:    Top-25 candidates
+  - Address Quota: Top-15 candidates
+  - Char Quota:    Top-10 candidates
+  - Combination:   Pure set union (no post-union global cap)
+  - Mathematical Guarantee: Strict monotonicity and bounded worst-case size 
+    (<= 25 + 15 + 10 = 50 candidates per S1 entity).
+
+2. QUANTITATIVE PERFORMANCE METRICS
+--------------------------------------------------------------------------------
+Metric                      Baseline (Post-Union)    Option A (Per-View Quotas)   Delta
+--------------------------------------------------------------------------------
+Source 1 Sample Size        5,000                    5,000                        -
+Ground Truth Matches        17,318                   17,318                       -
+Retrieved GT Matches        14,206                   14,836                       +630 matches
+Blocking Recall             82.03%                   85.67%                       +3.64%
+Average Candidates / S1     25.94                    40.10                        +14.16
+Median Candidates / S1      25.0                     42.0                         +17.0
+Maximum Candidates / S1     45                       50                           +5
+Candidate Reduction Ratio   99.99975%                99.99961%                    -0.00014%
+
+3. DOWNSTREAM MODEL PERFORMANCE (XGBoost Matcher)
+--------------------------------------------------------------------------------
+Metric                      Baseline (Post-Union)    Option A (Per-View Quotas)   Delta
+--------------------------------------------------------------------------------
+Optimal Decision Threshold  0.10                     0.56                         +0.46
+Validation Macro Precision  0.9863                   0.9853                       -0.0010
+Validation Macro Recall     0.8955                   0.9084                       +0.0129
+Validation Macro F0.5       0.9546                   0.9587                       +0.0041 (+0.41%)
+Singleton Accuracy          100.00%                  100.00%                      0.00%
+
+4. RESOURCE & COMPUTATIONAL PROFILE
+--------------------------------------------------------------------------------
+Metric                      Baseline (Post-Union)    Option A (Per-View Quotas)
+--------------------------------------------------------------------------------
+Candidate Gen + Feat Time   7.92s                    74.16s (includes feature extraction)
+XGBoost Training Time       1.25s                    1.20s
+Process RSS Peak RAM        1906.1 MB (~1.91 GB)     1893.3 MB (~1.89 GB)
+System Available RAM Margin > 5.0 GB                 > 5.0 GB
+
+5. CONCLUSION
+--------------------------------------------------------------------------------
+Option A successfully resolves the union recall anomaly, lifts blocking recall 
+from 82.03% to 85.67% (+630 ground truth matches recovered), and improves the final 
+validation Macro F0.5 to 0.9587 while maintaining peak memory at 1.89 GB (well within 
+the 12 GB hardware budget).
+================================================================================

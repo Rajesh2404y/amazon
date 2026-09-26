@@ -1,0 +1,13 @@
+{
+  "target_country": "US",
+  "sample_s1_count": 15000,
+  "optimal_threshold": 0.54,
+  "macro_f05": 0.96445,
+  "macro_precision": 0.98957,
+  "macro_recall": 0.91458,
+  "blocking_recall": 0.8597,
+  "avg_candidates_per_s1": 39.39,
+  "total_runtime_sec": 460.41,
+  "peak_ram_mb": 1859.0,
+  "min_available_ram_gb": 4.75
+}

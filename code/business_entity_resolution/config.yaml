@@ -1,0 +1,79 @@
+system:
+  random_seed: 42
+  max_ram_gb: 12.0
+  n_jobs: -1
+
+paths:
+  dataset_dir: "dataset"
+  train_dir: "dataset/train"
+  test_dir: "dataset/test"
+  output_dir: "output"
+  reports_dir: "reports"
+  models_dir: "models"
+  scratch_dir: "scratch"
+
+normalization:
+  strip_legal_suffixes: true
+  clean_urls: true
+  normalize_address_tokens: true
+  normalize_state_codes: true
+  unicode_form: "NFKD"
+
+blocking:
+  token_prefix_len: 2
+  compact_prefix_len: 7
+  min_token_len: 3
+  max_inverted_list_len: 3000
+  name_top_k: 25
+  address_top_k: 15
+  char_top_k: 10
+  views_enabled:
+    - "exact_name"
+    - "compact_pfx7"
+    - "two_token_prefix"
+    - "dba_name"
+    - "address_number_street"
+    - "address_token_pair"
+
+training_data:
+  sample_s1_count: 5000
+  negative_to_positive_ratio: 3.0
+  val_split_ratio: 0.25
+
+features:
+  use_rapidfuzz: true
+  name_features:
+    - "jaro_winkler"
+    - "levenshtein_ratio"
+    - "token_sort_ratio"
+    - "token_set_ratio"
+    - "partial_ratio"
+    - "length_diff_ratio"
+    - "prefix_exact_4"
+  address_features:
+    - "token_sort_ratio"
+    - "token_set_ratio"
+    - "number_overlap_ratio"
+    - "length_diff_ratio"
+    - "addr_is_empty"
+  joint_features:
+    - "blocking_rule_hits"
+    - "candidate_source_is_s2"
+    - "name_length_s1"
+    - "addr_length_s1"
+
+xgboost:
+  n_estimators: 300
+  max_depth: 6
+  learning_rate: 0.08
+  subsample: 0.85
+  colsample_bytree: 0.85
+  tree_method: "hist"
+  objective: "binary:logistic"
+  eval_metric: "logloss"
+  scale_pos_weight: 1.0
+
+decision:
+  default_threshold: 0.10
+  relative_score_margin: 0.15
+  singleton_max_score_cutoff: 0.10

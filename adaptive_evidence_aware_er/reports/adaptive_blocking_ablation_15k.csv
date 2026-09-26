@@ -1,0 +1,6 @@
+experiment,blocking_recall,avg_candidates,median_candidates,max_candidates,total_pairs,precision,recall,macro_f0_5,singleton_accuracy,runtime_seconds,peak_ram_mb
+Baseline,0.8581,39.45,42.0,50,178901,0.9854,0.9173,0.9623,0.9512,296.06,5295.0
+Adaptive-A,0.8598,40.41,44.0,50,179274,0.9888,0.9201,0.9658,0.9645,267.64,5360.4
+Adaptive-B,0.9132,35.83,38.0,50,189258,0.9882,0.9158,0.9638,0.9453,285.59,5372.5
+Adaptive-C,0.919,42.74,45.0,60,191342,0.9889,0.9259,0.968,0.9461,289.79,5256.7
+Adaptive-D,0.9253,52.98,56.0,75,193370,0.9884,0.9232,0.9666,0.9709,1727.02,5262.2

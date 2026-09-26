@@ -1,0 +1,4 @@
+Metric,Count,Percentage
+True Singletons,205,100.0%
+Correctly Predicted Empty,199,97.07%
+False Positive Merges,6,2.93%

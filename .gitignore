@@ -1,0 +1,40 @@
+# Data files (extremely large raw competition dataset, > 2.5 GB)
+dataset/
+*.tsv.gz
+*.csv.gz
+
+# Redundant backup outputs (kept safely on local disk)
+output_baseline_backup/
+adaptive_evidence_aware_er/output/
+amazon_ml_challenge_2026_entity_resolution/output/
+
+# Archive builds (can be re-created via packaging script)
+*.zip
+
+# Python & Environment
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Testing & Notebooks
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints
+
+# IDE & OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.kilo/
+.gemini/
+
+# Scratch & Temporary
+scratch/

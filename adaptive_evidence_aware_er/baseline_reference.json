@@ -1,0 +1,30 @@
+{
+  "baseline_name": "Option A Multi-View Blocking + XGBoost HistClassifier",
+  "validation_sample_size": 15000,
+  "total_gt_matches": 52027,
+  "retrieved_gt_matches": 44727,
+  "blocking_recall": 0.8597,
+  "average_candidates_per_s1": 39.39,
+  "median_candidates_per_s1": 42.0,
+  "max_candidates_per_s1": 50,
+  "candidate_ceiling": 50,
+  "candidate_quotas": {
+    "name_top_k": 25,
+    "address_top_k": 15,
+    "char_top_k": 10
+  },
+  "total_training_pairs": 179225,
+  "train_pairs": 134503,
+  "val_pairs": 44722,
+  "optimal_threshold": 0.54,
+  "val_precision": 0.9896,
+  "val_recall": 0.9146,
+  "val_macro_f05": 0.9645,
+  "singleton_accuracy": 1.0,
+  "baseline_1_exact_name_f05": 0.6301,
+  "baseline_2_weighted_sim_f05": 0.3059,
+  "peak_process_ram_mb": 1859.0,
+  "total_runtime_seconds": 460.41,
+  "unit_tests_passed": 12,
+  "validator_status": "PASS"
+}

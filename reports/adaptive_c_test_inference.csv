@@ -1,0 +1,4 @@
+country,s1_evaluated,total_s1_in_test,candidate_pairs,avg_candidates_per_s1,median_candidates_per_s1,max_candidates_per_s1,predicted_matches,singleton_rate_pct,query_throughput_qps,runtime_seconds,peak_ram_mb
+France,5000,259452,240293,48.06,51.0,60,20596,1.98,56.8,170.7,2467.2
+India,5000,809986,232478,46.5,49.0,60,14802,4.1,55.4,419.8,7735.0
+US,5000,663106,216160,43.23,45.0,60,15506,3.1,48.7,317.7,7955.1

@@ -1,0 +1,4 @@
+model,precision,recall,f0_5,singleton_acc
+Baseline 1: Exact Name Rule,0.69127,0.60418,0.63006,0.75122
+Baseline 2: Weighted Similarity,0.26246,0.99946,0.30592,0.02439
+Main Model: XGBoost Classifier,0.96981,0.97163,0.96647,0.96098
